@@ -19,6 +19,8 @@
     "mongoose": "5.9.25"
   },
   "devDependencies": {
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.10.5",
     "nodemon": "2.0.4"
   }
 }
