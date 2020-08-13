@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = 5000
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
@@ -24,6 +23,14 @@ mongoose.connect(config.mongoURI, {
 
 
 app.get('/', (req, res) => res.send('Hello d'))
+
+
+
+
+app.get('/api/hello', (req, res) => {
+    res.send('안녕하세요~');
+})
+
 
 //Router기능을 사용하기 위해 /api/~~를 사용하는 것이 좋다.
 //그냥 쓰면 파일이 매우 길어지기 때문에 express의 router기능을 사용해서 분리한다.
@@ -98,5 +105,7 @@ app.get('/api/users/logout', auth, (req, res) => {
         })
     })
 })
+
+const port = 5000
 
 app.listen(port, () => console.log(`Example app listening on port ${port}`))
