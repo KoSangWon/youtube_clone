@@ -13,22 +13,22 @@ app.use(bodyParser.urlencoded({encoded: true}));
 
 //json형태의 데이터를 가져올 수 있게 해줌.
 app.use(bodyParser.json())
-app.use(cookieParser());
+app.use(cookieParser());//cookieParser사용
 
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI, {
-    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
+    useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false //안쓰면 에러가 뜸.
 }).then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
 
 
-app.get('/', (req, res) => res.send('Hello d'))
+app.get('/', (req, res) => res.send('Hello'))
 
 
 
 
 app.get('/api/hello', (req, res) => {
-    res.send('안녕하세요~');
+    res.send('안녕하세d요~');
 })
 
 
@@ -82,7 +82,7 @@ app.post('/api/users/login', (req, res) => {
 })
 
 
-//auth 는 미들웨어
+//auth 는 미들웨어, 인증여부를 알려줌.
 app.get('/api/users/auth', auth, (req, res) => {
     //여기까지 미들웨어를 통과했다는 얘기는 Authentication이 True라는 말.
     res.status(200).json({
@@ -98,7 +98,7 @@ app.get('/api/users/auth', auth, (req, res) => {
 })
 
 app.get('/api/users/logout', auth, (req, res) => {
-    User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, user) => {
+    User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, user) => {//토큰을 지워주기만하면 로그아웃됨.
         if(err) return res.json({success: false, err});
         return res.status(200).send({
             success: true

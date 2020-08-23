@@ -38,7 +38,7 @@ const userSchema = mongoose.Schema({
 userSchema.pre('save', function(next){//저장하기 전에 뭔가를 한다.
     var user = this;
 
-    if(user.isModified('password')){
+    if(user.isModified('password')){//password가 수정된다면
         //비밀번호가 수정 되는 경우에만 비밀번호를 암호화 시킨다. 왜냐하면 비밀번호 외에 이메일, 이름 등을 수정할 때에도 비밀번호를 암호화하면 안되기 때문이다. 그래서 비밀번호 수정될 때만 암호화.
         bcrypt.genSalt(saltRounds, function(err, salt){//10자리인 salt
             if(err) return next(err)
@@ -58,7 +58,7 @@ userSchema.pre('save', function(next){//저장하기 전에 뭔가를 한다.
 userSchema.methods.comparePassword = function(plainPassword, cb){//cb = call back function
     //plainPassword  1234566 , 암호화된 비밀번호 $2bsasff~~
     //암호화한 후 같은지 확인
-    bcrypt.compare(plainPassword, this.password, (err, isMatch) => {
+    bcrypt.compare(plainPassword, this.password, (err, isMatch) => {//bcrypt에서 제공하는 method
         if(err) return cb(err)
         cb(null, isMatch)//err는 없고 isMatch는 true
     })
@@ -72,7 +72,7 @@ userSchema.methods.generateToken = function(cb){
     user.token = token
     user.save((err, user) => {
         if(err) return cb(err)
-        cb(null, user)
+        cb(null, user)//err는 null이고 user정보 전달
     })
 }
 
