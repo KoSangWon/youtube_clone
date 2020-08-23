@@ -1,14 +1,24 @@
-import { LOGIN_USER } from './types';
+import { LOGIN_USER, REGISTER_USER } from './types';
 import Axios from 'axios';
 
-export function loginUser(dataToSubmit) {
+export const loginUser=(dataToSubmit) =>{
     const request = Axios.post('/api/users/login', dataToSubmit)
-    .then(response => response.data)
+        .then(response => response.data)
 
-    console.log('이건 reqeust', request)
+    console.log('이건 reqeust1', request)
 
     return {
         type: LOGIN_USER,
+        payload: request
+    }
+}
+
+export const registerUser = (dataToSubmit) => {
+    const request = Axios.post('/api/users/register', dataToSubmit)
+        .then(response => response.data)
+
+    return {
+        type: REGISTER_USER,
         payload: request
     }
 }

@@ -97,7 +97,7 @@ app.get('/api/users/auth', auth, (req, res) => {
     })
 })
 
-app.get('/api/users/logout', auth, (req, res) => {
+app.get('/api/users/logout', auth, (req, res) => {//미들웨어에서 가져와서 찾아주기
     User.findOneAndUpdate({_id: req.user._id}, {token: ""}, (err, user) => {//토큰을 지워주기만하면 로그아웃됨.
         if(err) return res.json({success: false, err});
         return res.status(200).send({

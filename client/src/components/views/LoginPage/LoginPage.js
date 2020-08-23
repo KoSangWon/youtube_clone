@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch} from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 
-export default function LoginPage(props) {
+const LoginPage = (props) => {
 
     const dispatch = useDispatch()
 
@@ -60,3 +60,5 @@ export default function LoginPage(props) {
         </div>
     )
 }
+
+export default LoginPage;
