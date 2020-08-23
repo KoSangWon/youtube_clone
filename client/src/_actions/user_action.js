@@ -1,4 +1,4 @@
-import { LOGIN_USER, REGISTER_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
 import Axios from 'axios';
 
 export const loginUser=(dataToSubmit) =>{
@@ -19,6 +19,16 @@ export const registerUser = (dataToSubmit) => {
 
     return {
         type: REGISTER_USER,
+        payload: request
+    }
+}
+
+export const auth = () => {
+    const request = Axios.get('/api/users/auth')//get이므로 body는 필요없음
+        .then(response => response.data)
+
+    return {
+        type: AUTH_USER,
         payload: request
     }
 }

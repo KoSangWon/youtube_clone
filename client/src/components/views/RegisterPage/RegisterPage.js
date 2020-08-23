@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useDispatch} from 'react-redux';
-import { loginUser, registerUser } from '../../../_actions/user_action';
-import { REGISTER_USER } from '../../../_actions/types';
+import { registerUser } from '../../../_actions/user_action';
+import {withRouter} from 'react-router-dom'
 
 const RegisterPage = (props) => {
     const dispatch = useDispatch()
@@ -89,4 +89,4 @@ const RegisterPage = (props) => {
     )
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);
