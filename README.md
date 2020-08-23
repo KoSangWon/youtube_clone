@@ -1,3 +1,3 @@
 ## Youtube
 
-### React, Nodejs, MongoDB
+### React js, Redux, Express js, Mongo DB
