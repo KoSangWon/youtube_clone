@@ -31,7 +31,7 @@ export default function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess){
-                    props.history('/')//페이지 이동
+                    props.history.push('/')//페이지 이동
                 }else{
                     alert('Error');
                 }
