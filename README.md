@@ -1,3 +1,3 @@
-## Youtube
+## Boilerplate of Mern Stack
 
-### React, Nodejs, MongoDB
+### React js, Redux, Express js, Mongo DB
